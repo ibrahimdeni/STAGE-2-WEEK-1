@@ -1,11 +1,14 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import {Container, Nav, Navbar, Button} from 'react-bootstrap';
 import logo from '../../images/LOGO.png';
-import Button from 'react-bootstrap/Button';
+import AuthModal from "./AuthModal";
+import { useState } from "react";
 
+const NavScrollExample = () => {
+    //Modal
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
 
-function NavScrollExample() {
     return (
         <Navbar bg="dark" expand="md">
             <Container fluid>
@@ -25,13 +28,16 @@ function NavScrollExample() {
                 <div className='me-5 d-flex'>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="ms-5     me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                            <Button className='bg-light text-danger fw-semibold me-1 px-4' variant='light'>Register</Button>
-                            <Button className='bg-danger text-light fw-semibold ms-1 px-4' variant='danger'>Log In</Button>
+                            <Button className='bg-light text-danger fw-semibold me-1 px-4' variant='light' onClick={handleShow}>Register</Button>
+                            <AuthModal show={show} handleClose={handleClose} />
+                            <Button className='bg-danger text-light fw-semibold ms-1 px-4' variant='danger' onClick={handleShow}>Log In</Button>
+                            <AuthModal show={show} handleClose={handleClose} />
                         </Nav>
                     </Navbar.Collapse>
                 </div>
             </Container>
         </Navbar>
+
     );
 }
 
